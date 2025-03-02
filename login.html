@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HOPE US</title>
+    <link rel="stylesheet" href="./css/global.css">
+    <link rel="stylesheet" href="./css/login.css">
+</head>
+<body>
+    <div class="overlay">
+        <div class="header">
+            <div class="title">
+                <img class="hospital-logo" src="./assets/Hospital-logo-removebg.png" alt="Hospital logo">
+                <span>HOPE US <span style="font-style: italic; font-weight: 300;">Hospitals</span></span>
+            </div>
+            <div class="navbar">
+                <a href="./home.html"><span>Home</span></a>
+                
+                <a href="./login.html"><span>Login</span></a>
+                <a href="./registration.html"><span>Register</span></a>
+                <a href="#about-us-id"><span>About us</span></a>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="content">
+                <h2>Hospital Admin Login</h2>
+                <form id="loginForm">
+                    <span>Username :</span>
+                    <input type="text" name="username" id="username" required>
+
+                    <span>Password :</span>
+                    <input type="password" name="password" id="password" required>
+
+                    <!-- Placeholder for error message -->
+                    <p id="error-message" style="color: red; display: none;"></p>
+
+                    <button type="submit">Login</button>
+                </form>
+            </div>
+        </div>
+
+        <div class="footer" id="about-us-id">
+            <!-- Footer content here -->
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', function (e) {
+            e.preventDefault(); // Prevent the default form submission
+
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+
+            const xhr = new XMLHttpRequest();
+            xhr.open('POST', 'backend/login.php', true);
+            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+
+            xhr.onload = function () {
+                const response = JSON.parse(this.responseText);
+                const errorMessage = document.getElementById('error-message');
+
+                if (response.success) {
+                    errorMessage.textContent = "";
+                    errorMessage.style.display = 'none';
+                    window.location.href = './admin_dashboard.html'; // Redirect on success
+                } else {
+                    errorMessage.textContent = response.message;
+                    errorMessage.style.display = 'block';
+                }
+            };
+
+            xhr.send(`username=${encodeURIComponent(username)}&password=${encodeURIComponent(password)}`);
+        });
+    </script>
+</body>
+</html>

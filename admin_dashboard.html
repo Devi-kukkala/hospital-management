@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HOPE US</title>
+    <link rel="stylesheet" href="./css/global.css">
+    <link rel="stylesheet" href="./css/admin-dashboard.css">
+</head>
+<body>
+    <div class="overlay">
+        <div class="header">
+            <div class="title">
+                <img class="hospital-logo" src="./assets/Hospital-logo-removebg.png" alt="Hospital logo">
+                <span>HOPE US <span style="font-style: italic; font-weight: 300;">Hospitals</span></span>
+            </div>
+            <div class="navbar">
+                <a href="./home.html"><span>Home</span></a>
+                
+                <a href="./login.html"><span>Login</span></a>
+                <a href="./registration.html"><span>Register</span></a>
+                <a href="#about-us-id"><span>About us</span></a>
+                <a href="./backend/logout.php"><span>Logout</span></a>
+            </div>
+        </div>
+        
+        <div class="container">
+            <h2>Admin Dashboard</h2>
+            <div class="patients-data">
+                <div class="form-container">
+                    <h3>Patient Application form</h3>
+                    <form method="POST" action="./backend/process_patient.php">
+                        <span>Patient Name :</span>
+                        <input type="text" name="patient_name"  required>
+    
+                        <span>Patient Age :</span>
+                        <input type="number" name="age"  required>
+    
+                        <span>Patient Phone :</span>
+                        <input type="text" name="phone"  required>
+    
+                        <span>Patient Disease :</span>
+                        <input type="text" name="disease"  required>
+    
+                        <span>Patient Joined Date :</span>
+                        <input type="date" name="joined_date"  required>
+    
+                        <span>Fee Paid Patient :</span>
+                        <input type="text" name="fee_paid"  required>
+    
+                        <span>Consulting Doctor :</span>
+                        <input type="text" name="doctor"  required>
+    
+                        <span>Patient Address :</span>
+                        <input type="text" name="address"  required>
+    
+                        <button type="submit" name="add_patient">Add Patient</button>
+                    </form>
+                </div>
+        
+                <div class="patients-list">
+                    <h3>Patients Details</h3>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Patient Name</th>
+                                <th>Age</th>
+                                <th>Phone</th>
+                                <th>Disease</th>
+                                <th>Joined Date</th>
+                                <th>Fee Paid</th>
+                                <th>Doctor</th>
+                                <th>Address</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="patients-table-body">
+                            <!-- Patient rows will be injected here via JavaScript -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer" id="about-us-id">
+            <h2>About us</h2>
+            <div class="about-container">
+                <img src="./assets/about-us-card-img.jpg" alt="Hospital logo">
+                <div class="about-content">
+                    <p>Welcome to Hope Us Hospital, where compassion meets excellence in healthcare. For over a decade, we have been dedicated to providing world-class medical services with a personal touch. Our mission is to offer comprehensive, patient-centered care to all members of the community, ensuring the highest standards of medical excellence.</p>
+                    <p>At Hope Us Hospital, we believe that healing goes beyond medical treatment. Our state-of-the-art facilities, combined with a team of highly skilled doctors, nurses, and support staff, are here to provide the best care possible in a nurturing and comforting environment.</p>
+                    <p>At the heart of our hospital is our commitment to you—our patients. Whether you're here for a routine check-up or a life-saving procedure, you can trust that you are in the best hands. Together, we are building a healthier tomorrow, one patient at a time.</p>
+                </div>
+            </div>
+            <h2 id="follow-us">Follow us on</h2>
+            <div class="social-media">
+                <div class="social-icons">
+                    <img src="./assets/facebook-logo.png" alt="">
+                    <span>Facebook</span>
+                </div>
+
+                <div class="social-icons">
+                    <img src="./assets/instagram-logo.png" alt="">
+                    <span>Instagram</span>
+                </div>
+
+                <div class="social-icons">
+                    <img src="./assets/twitter-logo.png" alt="">
+                    <span>Twitter</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <script>
+        // Function to load patient data using AJAX
+        function loadPatients() {
+            const xhr = new XMLHttpRequest();
+            xhr.open('GET', './backend/list_patients.php', true);
+            xhr.onload = function () {
+                if (xhr.status === 200) {
+                    const patients = JSON.parse(xhr.responseText);
+                    const tableBody = document.getElementById('patients-table-body');
+                    tableBody.innerHTML = ''; // Clear previous rows
+
+                    // Loop through the patients and add them to the table
+                    patients.forEach(function(patient) {
+                        const row = document.createElement('tr');
+
+                        row.innerHTML = `
+                            <td>${patient.patient_name}</td>
+                            <td>${patient.age}</td>
+                            <td>${patient.phone}</td>
+                            <td>${patient.disease}</td>
+                            <td>${patient.joined_date}</td>
+                            <td>${patient.fee_paid}</td>
+                            <td>${patient.doctor}</td>
+                            <td>${patient.address}</td>
+                            <td class="actions">
+                                <button id="edit" onclick="editPatient(${patient.id})">Edit</button>
+                                <button id="delete" onclick="deletePatient(${patient.id})">Delete</button>
+                            </td>
+                        `;
+
+                        tableBody.appendChild(row);
+                    });
+                } else {
+                    console.error('Failed to load patients.');
+                }
+            };
+            xhr.send();
+        }
+
+        // Call the function to load patients on page load
+        window.onload = loadPatients;
+
+        function editPatient(id) 
+        {
+            // Send an AJAX request to get the patient data by ID
+            const xhr = new XMLHttpRequest();
+            xhr.open('GET', './backend/get_patient.php?id=' + id, true); // This PHP file fetches patient data by ID
+            xhr.onload = function () {
+                if (xhr.status === 200) {
+                    const patient = JSON.parse(xhr.responseText);
+
+                    // Populate form fields with patient data
+                    document.querySelector('input[name="patient_name"]').value = patient.patient_name;
+                    document.querySelector('input[name="age"]').value = patient.age;
+                    document.querySelector('input[name="phone"]').value = patient.phone;
+                    document.querySelector('input[name="disease"]').value = patient.disease;
+                    document.querySelector('input[name="joined_date"]').value = patient.joined_date;
+                    document.querySelector('input[name="fee_paid"]').value = patient.fee_paid;
+                    document.querySelector('input[name="doctor"]').value = patient.doctor;
+                    document.querySelector('input[name="address"]').value = patient.address;
+
+                    // Change the button text to 'Update Patient' and modify form action
+                    const submitButton = document.querySelector('button[type="submit"]');
+                    submitButton.textContent = "Update Patient";
+                    submitButton.name = "update_patient"; // Change name to differentiate between add and update
+
+                    // Optionally add a hidden input to store the patient ID for the update
+                    let patientIdField = document.querySelector('input[name="patient_id"]');
+                    if (!patientIdField) {
+                        patientIdField = document.createElement('input');
+                        patientIdField.type = 'hidden';
+                        patientIdField.name = 'patient_id';
+                        document.querySelector('form').appendChild(patientIdField);
+                    }
+                    patientIdField.value = id; // Set the hidden field with patient ID
+                } else {
+                    console.error("Failed to fetch patient data.");
+                }
+            };
+            xhr.send();
+        }
+
+
+        function deletePatient(id) {
+            if (confirm("Are you sure you want to delete this patient?")) {
+                window.location.href = "./backend/delete_patient.php?id=" + id;
+            }
+        }
+    </script>
+</body>
+</html>

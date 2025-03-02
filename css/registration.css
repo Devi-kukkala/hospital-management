@@ -1,0 +1,80 @@
+.container {
+  background-image: url("../assets/hospital-bg-img.jpg");
+  background-size: cover;
+  width: 100%;
+  height: 90vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.container .content {
+  background-color: rgba(39, 54, 109, 0.2);
+  backdrop-filter: blur(5px);
+  width: 30%;
+  border-radius: 10px;
+  padding: 50px;
+}
+
+.container .content .form-container {
+  width: 100%;
+  height: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+h2 {
+  text-align: center;
+  font-size: 28px;
+  font-weight: 600;
+  margin-bottom: 50px;
+  color: #000000;
+}
+
+form span {
+  color: rgb(255, 255, 255);
+  font-size: 17px;
+  font-weight: bold;
+}
+
+form input {
+  width: 100%;
+  margin: 15px 0 20px 0;
+  border: none;
+  background-color: transparent;
+  border-bottom: solid 2px  #030b2a;
+  font-size: 16px;
+  transition: all 0.3s ease;
+  color: cornsilk;
+}
+
+form input:focus {
+  outline: none;
+  border-color:  rgb(8, 8, 205);
+  box-shadow: 0 0 8px rgba(84, 119, 245, 0.2);
+}
+
+form button {
+  width: 100%;
+  padding: 12px;
+  border: none;
+  border-radius: 8px;
+  background-color: #ff8400;
+  color: white;
+  font-size: 18px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-top: 30px;
+}
+
+form button:hover {
+    background-color: #c56600;
+}
+
+form button:active {
+  transform: translateY(1px);
+}

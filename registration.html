@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HOPE US</title>
+    <link rel="stylesheet" href="./css/global.css">
+    <link rel="stylesheet" href="./css/registration.css">
+
+</head>
+
+<body>
+    <div class="overlay">
+        <div class="header">
+            <div class="title">
+                <img class="hospital-logo" src="./assets/Hospital-logo-removebg.png" alt="Hospital logo">
+                <span>HOPE US <span style="font-style: italic; font-weight: 300;">Hospitals</span></span>
+            </div>
+            <div class="navbar">
+                <a href="./home.html"><span>Home</span></a>
+                
+                <a href="./login.html"><span>Login</span></a>
+                <a href="#"><span>Register</span></a>
+                <a href="#about-us-id"><span>About us</span></a>
+            </div>
+            
+        </div>
+        <div class="container">
+            <div class="content">
+                <div class="form-container">
+                    <h2>Registration Form</h2>
+
+                    <form method="POST" action="./backend/register.php">
+                        <span>Username :</span>
+                        <input type="text" name="username" required>
+
+                        <span>Password :</span>
+                        <input type="password" name="password" required>
+
+                        <span>Hospital code :</span>
+                        <input type="text" name="hospitalCode" required>
+                        <button type="submit">Register</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="footer" id="about-us-id">
+            <h2>About us</h2>
+            <div class="about-container">
+                <img src="./assets/about-us-card-img.jpg" alt="Hospital logo">
+                <div class="about-content">
+                    <p>Welcome to Hope Us Hospital, where compassion meets excellence in healthcare. For over a decade, we have been dedicated to providing world-class medical services with a personal touch. Our mission is to offer comprehensive, patient-centered care to all members of the community, ensuring the highest standards of medical excellence.</p>
+                    <p>At Hope Us Hospital, we believe that healing goes beyond medical treatment. Our state-of-the-art facilities, combined with a team of highly skilled doctors, nurses, and support staff, are here to provide the best care possible in a nurturing and comforting environment.</p>
+                    <p>At the heart of our hospital is our commitment to you—our patients. Whether you're here for a routine check-up or a life-saving procedure, you can trust that you are in the best hands. Together, we are building a healthier tomorrow, one patient at a time.</p>
+                </div>
+            </div>
+            <h2 id="follow-us">Follow us on</h2>
+            <div class="social-media">
+                <div class="social-icons">
+                    <img src="./assets/facebook-logo.png" alt="">
+                    <span>Facebook</span>
+                </div>
+
+                <div class="social-icons">
+                    <img src="./assets/instagram-logo.png" alt="">
+                    <span>Instagram</span>
+                </div>
+
+                <div class="social-icons">
+                    <img src="./assets/twitter-logo.png" alt="">
+                    <span>Twitter</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

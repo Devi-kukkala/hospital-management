@@ -1,0 +1,139 @@
+/* Import a modern Google font */
+@import url("https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  background: rgb(57, 55, 55);
+}
+
+body .overlay {
+  background: rgb(187, 217, 223);
+  width: 100%;
+  height: auto;
+  /* border-radius: 20px; */
+  /* display: flex;
+    justify-content: center;
+    align-items: center; */
+}
+
+a {
+  text-decoration: none;
+  color: black;
+}
+
+/* ------------- header section ------------- */
+
+body .overlay .header {
+  width: 100%;
+  height: 10vh;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5px;
+  background-color: rgb(49, 130, 130);
+}
+
+.title {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.title .hospital-logo {
+  height: 80px;
+  width: 100px;
+}
+
+.title span {
+  font-weight: 900;
+  font-size: x-large;
+  color: white;
+}
+
+.navbar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+  padding: 20px 40px;
+}
+.navbar a {
+  color: white;
+}
+
+
+/* ------------- footer section ------------- */
+
+.footer{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.footer h2{
+    font-size: 40px;
+    font-weight: 1000;
+    margin-bottom: 50px;
+}
+
+.about-container{
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    width: 90%;
+    gap: 50px;
+
+}
+
+.about-container img{
+    height: 500px;
+    width: 900px;
+    border-radius: 10px;
+}
+
+.about-container .about-content{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 50px;
+}
+
+.about-container .about-content p{
+    line-height: 30px;
+    text-align: justify;
+}
+
+.footer #follow-us{
+    margin: 40px;
+    font-size: 28px;
+    font-weight: 600px;
+}
+
+.social-media{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 60px;
+}
+
+.social-media .social-icons{
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   flex-direction: column;
+   gap: 15px;
+}
+
+.social-icons img{
+    width: 40px;
+    height: 40px;
+}
